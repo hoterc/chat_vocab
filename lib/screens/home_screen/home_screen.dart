@@ -49,10 +49,7 @@ class HomeScreen extends ConsumerWidget {
         decoration: BoxDecoration(
           border: Border(
             // Specifies borders for individual sides
-            top: BorderSide(
-              color: Color(0xffAEADB2), // The color of the border line
-              width: 0.3, // The thickness of the border line
-            ),
+            top: BorderSide(color: Color(0xffAEADB2), width: 0.3),
           ),
         ),
         child: SafeArea(

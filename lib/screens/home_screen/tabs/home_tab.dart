@@ -30,119 +30,116 @@ class _HomeTabState extends State<HomeTab> with SingleTickerProviderStateMixin {
 
   @override
   void dispose() {
-    _animationController.dispose(); // Always clean animations
+    _animationController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
 
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(height: 70),
-            //name of the app
-            const Text(
-              'ChatVocab',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1.5,
-              ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const SizedBox(height: 70),
+          //name of the app
+          const Text(
+            'ChatVocab',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.5,
             ),
-            // Subtitle
-            const Text(
-              'Practice your chat words',
-              style: TextStyle(
-                color: Colors.blueAccent,
-                fontSize: 18,
-                fontStyle: FontStyle.italic,
-              ),
+          ),
+          // Subtitle
+          const Text(
+            'Practice your chat words',
+            style: TextStyle(
+              color: Colors.blueAccent,
+              fontSize: 18,
+              fontStyle: FontStyle.italic,
             ),
+          ),
 
-            const SizedBox(height: 60),
+          const SizedBox(height: 60),
 
-            // ----------------------------
-            // START PRACTICE BUTTON (GLOW)
-            // ----------------------------
-            AnimatedBuilder(
-              animation: _glowAnimation,
-              builder: (context, child) {
-                return Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(24),
-                    boxShadow: [
-                      BoxShadow(
-                        // FIXED: .withOpacity() → .withValues()
-                        color: Colors.blueAccent.withValues(
-                          alpha: (0.5 * _glowAnimation.value),
-                        ),
-                        blurRadius: 20,
-                        spreadRadius: 5 * _glowAnimation.value,
+          // ----------------------------
+          // START PRACTICE BUTTON (GLOW)
+          // ----------------------------
+          AnimatedBuilder(
+            animation: _glowAnimation,
+            builder: (context, child) {
+              return Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(24),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.blueAccent.withValues(
+                        alpha: (0.5 * _glowAnimation.value),
                       ),
-                    ],
-                  ),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      print("Start Practice pressed!");
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepPurpleAccent.withValues(
-                        alpha: 0.7,
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 80,
-                        vertical: 25,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                      elevation: 0,
+                      blurRadius: 20,
+                      spreadRadius: 5 * _glowAnimation.value,
                     ),
-                    child: const Text(
-                      "Start Practice",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-            SizedBox(height: 20),
-
-            _buildStreakIndicator(),
-
-            const SizedBox(height: 50),
-
-            // ----------------------------
-            // THREE STAT CARDS (Accuracy / Words / Weak Words)
-            // ----------------------------
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _buildStatsCard("Accuracy", "95%", Colors.transparent, 43.w),
-
-                _buildStatsCard(
-                  "Practiced\nToday",
-                  "20",
-                  Colors.transparent,
-                  43.w,
+                  ],
                 ),
-              ],
-            ),
+                child: ElevatedButton(
+                  onPressed: () {
+                    print("Start Practice pressed!");
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.deepPurpleAccent.withValues(
+                      alpha: 0.7,
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 80,
+                      vertical: 25,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    elevation: 0,
+                  ),
+                  child: const Text(
+                    "Start Practice",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+          SizedBox(height: 20),
 
-            const SizedBox(height: 20),
+          _buildStreakIndicator(),
 
-            _buildStatsCard("Weak Words", "5", Colors.transparent, 90.w),
-          ],
-        ),
+          const SizedBox(height: 50),
+
+          // ----------------------------
+          // THREE STAT CARDS (Accuracy / Words / Weak Words)
+          // ----------------------------
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildStatsCard("Accuracy", "95%", Colors.transparent, 43.w),
+
+              _buildStatsCard(
+                "Practiced\nToday",
+                "20",
+                Colors.transparent,
+                43.w,
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 20),
+
+          _buildStatsCard("Weak Words", "5", Colors.transparent, 90.w),
+        ],
       ),
     );
   }
@@ -161,10 +158,8 @@ class _HomeTabState extends State<HomeTab> with SingleTickerProviderStateMixin {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.white.withValues(
-            alpha: 0.15,
-          ), // Very light, subtle white
-          width: 1.0, // A thin 1-pixel width
+          color: Colors.white.withValues(alpha: 0.15),
+          width: 1.0,
         ),
         color: const Color(0xFF2C3E50).withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(24),

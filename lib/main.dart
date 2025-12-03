@@ -1,10 +1,16 @@
 import 'package:chat_vocab/config/theme.dart';
+import 'package:chat_vocab/core/storage/app_perfs.dart';
 import 'package:chat_vocab/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sizer/sizer.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AppPrefs.init();
+
+  // Save first open date if not set yet
+  await AppPrefs.saveFirstOpenDateIfNeeded();
   runApp(ProviderScope(child: MainApp()));
 }
 
