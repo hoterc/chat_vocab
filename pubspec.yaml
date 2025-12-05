@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   bottom_bar: ^2.0.5
+  circular_countdown_timer: ^0.2.4
   flutter:
     sdk: flutter
   flutter_riverpod: ^3.0.3
