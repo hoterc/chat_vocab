@@ -25,8 +25,8 @@ More features, UI updates, and documentation will be added soon.
 - Optional API integrations later  
 
 ## 📅 Roadmap
-- [ ] Basic UI setup  
-- [ ] Word list display  
+- [ ✅ ] Basic UI setup  
+- [ ✅ ] Word list display  
 - [ ] Practice modules (Quiz / Flashcards)  
 - [ ] Progress tracking  
 - [ ] Polished UI and animations  
