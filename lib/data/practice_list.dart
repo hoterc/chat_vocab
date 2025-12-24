@@ -1,5 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 final List<String> allWords = [
   "apple",
   "computer",
@@ -12,25 +10,24 @@ final List<String> allWords = [
   "practice",
   "memory",
 ];
-List<Words> modfiayEnglishList (){
+List<Words> modfiayEnglishList() {
+  List<Words> listwords = [];
 
+  for (var value in allWords) {
+    listwords.add(
+      Words(
+        words: value,
+        type: "notPractice",
+        seeingCount: 0,
+        lastTimePractice: DateTime.now(),
+        correctCount: 0,
+        incorrectCount: 0,
+      ),
+    );
+  }
 
-List<Words> listwords = [];
-
-
-for (var value in allWords) {
-
-
-  listwords.add(Words(words: value, type: "notPractice", seeingCount: 0, lastTimePractice: DateTime.now(), correctCount: 0, incorrectCount: 0));
+  return listwords;
 }
-
-
-return listwords;
-
-
-
-}
-
 
 class Words {
   final String words;
@@ -40,12 +37,12 @@ class Words {
   final int correctCount;
   final int incorrectCount;
 
-  Words({required this.words, required this.type, required this.seeingCount, required this.lastTimePractice, required this.correctCount, required this.incorrectCount});
-
-
-}
-
-class AllWords extends Notifier<Words> {
-  @override
-  build() => ;
+  Words({
+    required this.words,
+    required this.type,
+    required this.seeingCount,
+    required this.lastTimePractice,
+    required this.correctCount,
+    required this.incorrectCount,
+  });
 }
