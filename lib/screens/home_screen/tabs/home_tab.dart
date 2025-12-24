@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 
 class HomeTab extends StatefulWidget {
@@ -87,6 +88,7 @@ class _HomeTabState extends State<HomeTab> with SingleTickerProviderStateMixin {
                 child: ElevatedButton(
                   onPressed: () {
                     print("Start Practice pressed!");
+                    context.pushNamed('practice');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepPurpleAccent.withValues(

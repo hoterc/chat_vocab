@@ -94,7 +94,7 @@ class _PracticeScreenState extends State<PracticeScreen>
       );
     }
 
-    double progress = secondsLeft / 3;
+    double progress = secondsLeft / 5;
 
     return Scaffold(
       body: Center(

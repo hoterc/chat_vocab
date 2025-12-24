@@ -1,20 +1,13 @@
 import 'package:bottom_bar/bottom_bar.dart';
-import 'package:chat_vocab/screens/home_screen/providers/navigation_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'tabs/tab_import.dart';
+import 'package:go_router/go_router.dart';
 
-class HomeScreen extends ConsumerWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  final StatefulNavigationShell navigationShell;
 
-  final List<Widget> _screens = const [
-    HomeTab(),
-    WordListTab(),
-    ProfileTab(),
-    SettingsTab(),
-  ];
+  const HomeScreen({super.key, required this.navigationShell});
 
-  final List<BottomBarItem> _navigationItems = const [
+  static const List<BottomBarItem> _navigationItems = [
     BottomBarItem(
       icon: Icon(Icons.home, size: 30),
       title: Text('Home'),
@@ -38,26 +31,22 @@ class HomeScreen extends ConsumerWidget {
   ];
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final index = ref.watch(navigationProvider);
-
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[index],
-
-      // ref.read(navigationProvider.notifier).setIndex(value);
+      body: navigationShell,
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          border: Border(
-            // Specifies borders for individual sides
-            top: BorderSide(color: Color(0xffAEADB2), width: 0.3),
-          ),
+        decoration: const BoxDecoration(
+          border: Border(top: BorderSide(color: Color(0xffAEADB2), width: 0.3)),
         ),
         child: SafeArea(
           child: BottomBar(
-            selectedIndex: index,
+            selectedIndex: navigationShell.currentIndex,
             items: _navigationItems,
-            onTap: (value) {
-              ref.read(navigationProvider.notifier).setIndex(value);
+            onTap: (index) {
+              navigationShell.goBranch(
+                index,
+                initialLocation: index == navigationShell.currentIndex,
+              );
             },
           ),
         ),
